@@ -43,7 +43,10 @@ def main():
 		nickname = s.user.name
 		body = unescape(s.text)
 		ts = dt.strptime(s.created_at, "%a %b %d %H:%M:%S +0000 %Y").strftime("%Y-%m-%d %H:%M:%S")
-		timezone = s.user.utc_offset / 3600
+		try:
+			timezone = s.user.utc_offset / 3600
+		except:
+			timezone = 0
 		ts_japan = (dt.strptime(s.created_at, "%a %b %d %H:%M:%S +0000 %Y") + datetime.timedelta(hours=9)).strftime("%Y-%m-%d %H:%M:%S")
 		ts_date_japan = (dt.strptime(s.created_at, "%a %b %d %H:%M:%S +0000 %Y") + datetime.timedelta(hours=9)).strftime("%Y-%m-%d")
 		tool = re.compile(r'<.*?>').sub('', s.source)
