@@ -1,0 +1,4 @@
+Capfile
+*.pyc
+config.py
+config/
