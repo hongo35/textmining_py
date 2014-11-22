@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('config')
+
+from xml.sax.saxutils import unescape
 import MySQLdb as mysql
 import twitter
 import config
@@ -37,7 +41,7 @@ def main():
 		user_id = s.user.id
 		user_name = s.user.screen_name
 		nickname = s.user.name
-		body = s.text
+		body = unescape(s.text)
 		ts = dt.strptime(s.created_at, "%a %b %d %H:%M:%S +0000 %Y").strftime("%Y-%m-%d %H:%M:%S")
 		timezone = s.user.utc_offset / 3600
 		ts_japan = (dt.strptime(s.created_at, "%a %b %d %H:%M:%S +0000 %Y") + datetime.timedelta(hours=9)).strftime("%Y-%m-%d %H:%M:%S")
