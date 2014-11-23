@@ -29,7 +29,7 @@ def main():
 		access_token_secret = config.tw['access_token_secret']
 	)
 
-	statuses = api.GetHomeTimeline(count=200)
+	statuses = api.GetFavorites(count=200,screen_name='hongo35')
 	for s in statuses:
 		ts = dt.today().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -58,7 +58,7 @@ def main():
 		listed_cnt = s.user.listed_count
 
 		try:
-			cur.execute("INSERT INTO timelines(id,user_id,user_name,nickname,body,ts,timezone,ts_japan,ts_date_japan,tool,retweet_cnt,fav_cnt,cnt,link_cnt,linked_cnt,listed_cnt,created_at,updated_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", [id,user_id,user_name,nickname,body,ts,timezone,ts_japan,ts_date_japan,tool,retweet_cnt,fav_cnt,cnt,link_cnt,linked_cnt,listed_cnt,ts,ts])
+			cur.execute("INSERT INTO favorites(id,user_id,user_name,nickname,body,ts,timezone,ts_japan,ts_date_japan,tool,retweet_cnt,fav_cnt,cnt,link_cnt,linked_cnt,listed_cnt,created_at,updated_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", [id,user_id,user_name,nickname,body,ts,timezone,ts_japan,ts_date_japan,tool,retweet_cnt,fav_cnt,cnt,link_cnt,linked_cnt,listed_cnt,ts,ts])
 			con.commit()
 		except:
 			pass
