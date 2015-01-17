@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append('config')
+import sys,os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/config')
 
 from xml.sax.saxutils import unescape
 import MySQLdb as mysql
